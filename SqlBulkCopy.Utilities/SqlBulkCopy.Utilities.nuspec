@@ -7,6 +7,7 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <projectUrl>https://github.com/MookieFumi/SqlBulkCopy.Utilities</projectUrl>
+     <iconUrl>http://i57.tinypic.com/2vsmhac.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2015</copyright>
