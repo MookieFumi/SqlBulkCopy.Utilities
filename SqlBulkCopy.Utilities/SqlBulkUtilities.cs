@@ -46,11 +46,12 @@ public class SqlBulkUtilities
         };
     }
 
-    public void WriteToServer(SortedDataTable sortedDataTable)
+    public void WriteToServer(SortedDataTable sortedDataTable, int timeOut = 0)
     {
         using (var sqlBulkCopy = new System.Data.SqlClient.SqlBulkCopy(ConnectionString, SqlBulkCopyOptions.CheckConstraints | SqlBulkCopyOptions.KeepNulls)
                                  {
-                                     DestinationTableName = sortedDataTable.TableName
+                                     DestinationTableName = sortedDataTable.TableName,
+                                     BulkCopyTimeout = timeOut
                                  })
         {
             sqlBulkCopy.WriteToServer(sortedDataTable.DataTable);
