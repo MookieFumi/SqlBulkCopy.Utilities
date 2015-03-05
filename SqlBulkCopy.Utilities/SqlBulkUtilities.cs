@@ -61,13 +61,10 @@ public class SqlBulkUtilities
     private static string[] GetTableColumns(string tableName)
     {
         var sqlConnection = new SqlConnection(ConnectionString);
-        return sqlConnection.Query<string>(String.Format(@"SELECT  name AS ColumnName
-                                                    FROM    syscolumns
-                                                    WHERE   id = ( SELECT   id
-                                                                   FROM     sysobjects
-                                                                   WHERE    type = 'U'
-                                                                            AND [name] = '{0}'
-                                                                 )
-                                                    ORDER BY colorder", tableName)).ToArray();
+        return sqlConnection.Query<string>(String.Format(@"SELECT  COLUMN_NAME AS ColumnName
+                                                           FROM    INFORMATION_SCHEMA.COLUMNS
+                                                           WHERE   TABLE_NAME = '{0}'
+                                                           ORDER BY ORDINAL_POSITION", 
+                                                                                     tableName)).ToArray();
     }
 }
